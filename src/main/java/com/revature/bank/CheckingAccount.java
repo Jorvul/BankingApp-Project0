@@ -35,6 +35,11 @@ public abstract class CheckingAccount {
 		return this.balance = balance - amount;
 	}
 	
+	public void closeAccount() {
+		this.balance = 0;
+		System.out.println("Your account is closed and the balance is " + this.balance);
+	}
+	
 	
 
 }

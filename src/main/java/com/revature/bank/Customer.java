@@ -11,6 +11,7 @@ public class Customer extends CheckingAccount {
 		customer.depositFunds(150.00);
 		customer.withdrawFunds(5000.00);
 		System.out.println(customer.getBalance());
+		customer.closeAccount();
 	}
 
 
