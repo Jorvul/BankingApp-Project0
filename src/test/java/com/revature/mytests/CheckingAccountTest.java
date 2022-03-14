@@ -11,9 +11,14 @@ public class CheckingAccountTest {
 	Customer p = new Customer("Jorge", 30000.00);
 	
 	@Test
-	public void testBalance() {
+	public void testBalanceWithDeposit() {
 		double result = p.depositFunds(2000.00);
 		Assertions.assertEquals(32000.00, result);
+	}
+	@Test
+	public void testBalanceWithWithdrawal() {
+		double result = p.withdrawFunds(10000.00);
+		Assertions.assertEquals(20000, result);
 	}
 	
 
