@@ -7,7 +7,9 @@ public class JavalinClass {
 	public static void main(String[] args) {
 		Javalin app = Javalin.create().start(8008);
 
-		app.get("/getBalance/{n1}", HandlerController.depositFunds);
+		app.get("/getAllClients", HandlerController.getClients);
+		
+		app.get("/getWithdrawals/{n1}", HandlerController.withdrawFunds);
 	}
 
 }
