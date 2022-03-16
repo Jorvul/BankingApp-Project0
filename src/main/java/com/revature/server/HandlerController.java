@@ -2,6 +2,7 @@ package com.revature.server;
 
 import java.util.ArrayList;
 
+
 import io.javalin.http.Handler;
 
 public class HandlerController {
@@ -13,6 +14,10 @@ public class HandlerController {
 		customer.add("Elena");
 		customer.add("Wilfred");
 	ctx.result("Total clients in this account are " + customer);
+		
+	};
+	
+	public static Handler createClient = ctx ->{
 		
 	};
 	
