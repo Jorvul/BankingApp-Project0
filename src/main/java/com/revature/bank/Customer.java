@@ -7,6 +7,10 @@ public class Customer extends CheckingAccount {
 
 	public static void main(String[] args) {
 		CheckingAccount customer = new Customer("Jorge", 30000.00);
+		CheckingAccount customer2 = new Customer("Travis", 15000.00);
+		CheckingAccount customer3 = new Customer("Elena", 200000.00);
+		CheckingAccount customer4 = new Customer("Wilfred", 10000.00);
+
 		
 		customer.depositFunds(150.00);
 		customer.withdrawFunds(5000.00);
