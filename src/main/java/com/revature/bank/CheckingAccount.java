@@ -1,25 +1,16 @@
 package com.revature.bank;
 
 public abstract class CheckingAccount {
-	private String name;
 	private int customerId;
+	private String name;
 	private double balance;
 	
 	
-	public CheckingAccount(String name, int customerId, double balance) {
+	public CheckingAccount(int customerId, String name, double balance) {
 		super();
-		this.name = name;
 		this.customerId = customerId;
-		this.balance = balance;
-	}
-	
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
 		this.name = name;
+		this.balance = balance;
 	}
 	
 	public int getCustomerId() {
@@ -30,6 +21,15 @@ public abstract class CheckingAccount {
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 
 	public double getBalance() {
 		return balance;

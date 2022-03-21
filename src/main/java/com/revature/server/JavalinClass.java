@@ -7,7 +7,7 @@ public class JavalinClass {
 	public static void main(String[] args) {
 		Javalin app = Javalin.create().start(8008);
 
-		app.get("/getAllClients", HandlerController.getClients);
+		app.get("/getAllCustomers", HandlerController.getCustomers);
 		
 		app.post("/newClient", HandlerController.createClient);
 		

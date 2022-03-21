@@ -1,20 +1,38 @@
 package com.revature.server;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import com.revature.bank.Customer;
+import com.revature.jdbc.ConnectionUtils;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 
 import io.javalin.http.Handler;
 
 public class HandlerController {
 	
-	public static Handler getClients = ctx ->{
-		ArrayList<String> customer = new ArrayList<String>();
-		customer.add("Jorge");
-		customer.add("Travis");
-		customer.add("Elena");
-		customer.add("Wilfred");
-	ctx.result("Total clients in this account are " + customer);
+	public static Handler getCustomers = ctx ->{
+		ResultSet rs;
+		PreparedStatement ptsmt;
+		Connection conn = ConnectionUtils.createConnection();
 		
+		String selectCustomers = "select * from bank";
+		ptsmt = conn.prepareStatement(selectCustomers);
+		rs=ptsmt.executeQuery();
+		ArrayList<Customer> customer = new ArrayList<Customer>();
+		Customer c;
+		while(rs.next()) {
+			int id = rs.getInt("customer_id");
+			String name = rs.getString("customer_name");
+			int bal = rs.getInt("balance");
+			c=new Customer(id,name, bal);
+		}
+		rs.close();
+		ptsmt.close();
+		ctx.json(customer);
 	};
 	
 	public static Handler createClient = ctx ->{
