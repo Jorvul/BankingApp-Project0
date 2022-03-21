@@ -1,20 +1,20 @@
 package com.revature.jdbc;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
-public class PreparedStatement {
+public class PreparedStatementTest {
 	public static void main(String[] args) {
-		PreparedStatement ptsmt;
+	PreparedStatement ptsmt;
 	    ResultSet rs;
 	    
 	    Connection conn = ConnectionUtils.createConnection();
 	    
 	    try {
 	        String selectCustomers="select * from bank";    
-	        ptsmt = conn.prepareStatement(selectCustomers);
+	         ptsmt = conn.prepareStatement(selectCustomers);
 	        rs = ptsmt.executeQuery();
 	        
 	        while(rs.next()) {
