@@ -9,7 +9,7 @@ public class JavalinClass {
 
 		app.get("/getAllCustomers", HandlerController.getCustomers);
 		
-		app.post("/newClient", HandlerController.createClient);
+		app.post("/newClient", HandlerController.createCustomer);
 		
 		app.get("/getWithdrawals/{n1}", HandlerController.withdrawFunds);
 	}

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.revature.bank.Customer;
 import com.revature.jdbc.ConnectionUtils;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -35,9 +36,18 @@ public class HandlerController {
 		ctx.json(customer);
 	};
 	
-	public static Handler createClient = ctx ->{
+	public static Handler createCustomer = ctx ->{
+			Customer customer = ctx.bodyAsClass(Customer.class);
+			Connection conn=ConnectionUtils.createConnection();
+			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?)");
+			pstmt.setInt(1, customer.getCustomerId());
+			pstmt.setString(2, customer.getName());
+			pstmt.setDouble(3, customer.getBalance());
+			pstmt.execute();
+			ctx.status(201);
+		 };
 		
-	};
+
 	
 	public static Handler withdrawFunds = ctx -> {
 		int num = Integer.parseInt(ctx.pathParam("n1"));
