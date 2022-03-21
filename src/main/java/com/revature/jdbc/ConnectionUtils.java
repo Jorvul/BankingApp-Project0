@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionUtils {
 	public static Connection createConnection() {
-		String url = System.getenv("MyConnection");
+		String url = System.getenv("MyProject");
 		try {
 			Connection conn = DriverManager.getConnection(url);
 		return conn;
