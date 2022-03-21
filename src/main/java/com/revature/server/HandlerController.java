@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import com.revature.bank.Customer;
 import com.revature.jdbc.ConnectionUtils;
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -48,6 +46,25 @@ public class HandlerController {
 		 };
 		
 
+	public static Handler getCustomerbyId = ctx->{
+		Customer c1;
+		int c = Integer.parseInt(ctx.pathParam("customer_id"));
+		Connection conn=ConnectionUtils.createConnection();
+		String selectCustomer = "select * from bank where customer_id=?";
+		PreparedStatement ptsmt = conn.prepareStatement(selectCustomer);
+		ptsmt.setInt(1, c);
+		ResultSet rs = ptsmt.executeQuery();
+		ArrayList<Customer> customer = new ArrayList<Customer>();
+		while(rs.next()) {
+			int id = rs.getInt("customer_id");
+			String name = rs.getString("customer_name");
+			Double balance = rs.getDouble("balance");
+			c1 = new Customer(id,name, balance);
+		}
+		ctx.json(customer);
+		rs.close();
+		ptsmt.close();
+	};
 	
 	public static Handler withdrawFunds = ctx -> {
 		int num = Integer.parseInt(ctx.pathParam("n1"));

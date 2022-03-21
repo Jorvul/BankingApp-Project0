@@ -11,6 +11,8 @@ public class JavalinClass {
 		
 		app.post("/newClient", HandlerController.createCustomer);
 		
+		app.get("/getCustomer", HandlerController.getCustomerbyId);
+		
 		app.get("/getWithdrawals/{n1}", HandlerController.withdrawFunds);
 	}
 
