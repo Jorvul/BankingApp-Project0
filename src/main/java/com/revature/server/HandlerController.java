@@ -3,6 +3,7 @@ package com.revature.server;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.revature.bank.CheckingAccount;
 import com.revature.bank.Customer;
 import com.revature.jdbc.ConnectionUtils;
 import java.sql.Connection;
@@ -28,6 +29,7 @@ public class HandlerController {
 			String name = rs.getString("customer_name");
 			int bal = rs.getInt("balance");
 			c=new Customer(id,name, bal);
+			customer.add(c);
 		}
 		rs.close();
 		ptsmt.close();
