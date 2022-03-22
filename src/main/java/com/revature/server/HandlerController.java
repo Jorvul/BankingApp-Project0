@@ -39,7 +39,7 @@ public class HandlerController {
 	public static Handler createCustomer = ctx ->{
 			Customer customer = ctx.bodyAsClass(Customer.class);
 			Connection conn=ConnectionUtils.createConnection();
-			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?, ?)");
+			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?,?)");
 			pstmt.setInt(1, customer.getCustomerId());
 			pstmt.setString(2, customer.getName());
 			pstmt.setDouble(3, customer.getBalance());
@@ -49,19 +49,20 @@ public class HandlerController {
 		
 
 	public static Handler getCustomerbyId = ctx->{
-		Customer c1;
 		int c = Integer.parseInt(ctx.pathParam("customer_id"));
 		Connection conn=ConnectionUtils.createConnection();
 		String selectCustomer = "select * from bank where customer_id=?";
 		PreparedStatement ptsmt = conn.prepareStatement(selectCustomer);
-		ptsmt.setInt(1, c);
+		ptsmt.setInt(1,c);
 		ResultSet rs = ptsmt.executeQuery();
 		ArrayList<Customer> customer = new ArrayList<Customer>();
+		Customer c1;
 		while(rs.next()) {
 			int id = rs.getInt("customer_id");
 			String name = rs.getString("customer_name");
 			Double balance = rs.getDouble("balance");
 			c1 = new Customer(id,name, balance);
+			customer.add(c1);
 		}
 		ctx.json(customer);
 		rs.close();
