@@ -13,6 +13,8 @@ public class JavalinClass {
 		
 		app.get("/customer/{customer_id}", HandlerController.getCustomerbyId);
 		
+		app.put("/customer/{customer_id}", HandlerController.updateCustomer);
+		
 		app.get("/getWithdrawals/{n1}", HandlerController.withdrawFunds);
 	}
 

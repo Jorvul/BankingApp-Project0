@@ -69,6 +69,17 @@ public class HandlerController {
 		ptsmt.close();
 	};
 	
+	public static Handler updateCustomer=ctx->{
+		int id = Integer.parseInt(ctx.pathParam("customer_id"));
+		Customer customer=ctx.bodyAsClass(Customer.class);
+		Connection conn= ConnectionUtils.createConnection();
+		PreparedStatement pstmt = conn.prepareStatement("update bank set customer_name=? where customer_id=?");
+		pstmt.setString(1,customer.getName());
+		pstmt.setInt(2, id);
+		pstmt.execute();
+		ctx.status(200);
+	};
+	
 	public static Handler withdrawFunds = ctx -> {
 		int num = Integer.parseInt(ctx.pathParam("n1"));
 		double balance = 30000.00;
