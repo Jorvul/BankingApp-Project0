@@ -13,6 +13,12 @@ public abstract class CheckingAccount {
 		this.balance = balance;
 	}
 	
+	
+	public CheckingAccount() {
+		super();
+	}
+
+
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -39,7 +45,12 @@ public abstract class CheckingAccount {
 		this.balance = balance;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "CheckingAccount [customerId=" + customerId + ", name=" + name + ", balance=" + balance + "]";
+	}
+
+
 	public double depositFunds(double amount) {
 		return this.balance = balance + amount;
 	}

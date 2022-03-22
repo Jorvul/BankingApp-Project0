@@ -39,7 +39,7 @@ public class HandlerController {
 	public static Handler createCustomer = ctx ->{
 			Customer customer = ctx.bodyAsClass(Customer.class);
 			Connection conn=ConnectionUtils.createConnection();
-			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?)");
+			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?, ?)");
 			pstmt.setInt(1, customer.getCustomerId());
 			pstmt.setString(2, customer.getName());
 			pstmt.setDouble(3, customer.getBalance());
