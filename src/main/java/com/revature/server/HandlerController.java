@@ -67,9 +67,12 @@ public class HandlerController {
 			c1 = new Customer(id,name, balance, accountName);
 			customer.add(c1);
 		}
+		if(customer.size()==0)
+			ctx.status(404);
 		ctx.json(customer);
-		rs.close();
-		ptsmt.close();
+//		ctx.json(customer);
+//		rs.close();
+//		ptsmt.close();
 	};
 	
 	public static Handler updateCustomer=ctx->{
@@ -82,6 +85,8 @@ public class HandlerController {
 		pstmt.execute();
 		ctx.status(200);
 	};
+		
+	        
 	
 	public static Handler deleteCustomer=ctx->{
 		int id=Integer.parseInt(ctx.pathParam("customer_id"));
@@ -92,13 +97,13 @@ public class HandlerController {
 		ctx.status(205);
 	};
 	
-	public static Handler addAccount=ctx->{
-		Customer customer = ctx.bodyAsClass(Customer.class);
-		Connection conn=ConnectionUtils.createConnection();
-		PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?)");
-		pstmt.setInt(1, customer.getCustomerId());
-		pstmt.setString(2, customer.getName());
-		pstmt.setDouble(3, customer.getBalance());
+	public static Handler createAccount=ctx->{
+		int id = Integer.parseInt(ctx.pathParam("customer_id"));
+		Customer customer=ctx.bodyAsClass(Customer.class);
+		Connection conn= ConnectionUtils.createConnection();
+		PreparedStatement pstmt = conn.prepareStatement("update bank set account_type=? where customer_id=?");
+		pstmt.setString(1,customer.getAccountName());
+		pstmt.setInt(4, id);
 		pstmt.execute();
 		ctx.status(201);
 	};
