@@ -80,6 +80,15 @@ public class HandlerController {
 		ctx.status(200);
 	};
 	
+	public static Handler deleteCustomer=ctx->{
+		int id=Integer.parseInt(ctx.pathParam("customer_id"));
+		Connection conn= ConnectionUtils.createConnection();
+		PreparedStatement pstmt = conn.prepareStatement("delete from bank where customer_id=?");
+		pstmt.setInt(1, id);
+		pstmt.execute();
+		ctx.status(200);
+	};
+	
 	public static Handler withdrawFunds = ctx -> {
 		int num = Integer.parseInt(ctx.pathParam("n1"));
 		double balance = 30000.00;
