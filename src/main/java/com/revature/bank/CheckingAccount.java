@@ -4,13 +4,15 @@ public abstract class CheckingAccount {
 	private int customerId;
 	private String name;
 	private double balance;
+	private String accountName;
 	
 	
-	public CheckingAccount(int customerId, String name, double balance) {
+	public CheckingAccount(int customerId, String name, double balance, String accountName) {
 		super();
 		this.customerId = customerId;
 		this.name = name;
 		this.balance = balance;
+		this.accountName = accountName;
 	}
 	
 	
@@ -45,9 +47,19 @@ public abstract class CheckingAccount {
 		this.balance = balance;
 	}
 	
+	public String getAccountName() {
+		return accountName;
+	}
+
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
 	@Override
 	public String toString() {
-		return "CheckingAccount [customerId=" + customerId + ", name=" + name + ", balance=" + balance + "]";
+		return "CheckingAccount [customerId=" + customerId + ", name=" + name + ", balance=" + balance
+				+ ", accountName=" + accountName + "]";
 	}
 
 

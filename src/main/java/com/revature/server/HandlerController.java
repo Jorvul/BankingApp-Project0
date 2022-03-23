@@ -28,7 +28,8 @@ public class HandlerController {
 			int id = rs.getInt("customer_id");
 			String name = rs.getString("customer_name");
 			int bal = rs.getInt("balance");
-			c=new Customer(id,name, bal);
+			String account = rs.getString("account_type");
+			c=new Customer(id,name, bal, account);
 			customer.add(c);
 		}
 		rs.close();
@@ -39,10 +40,11 @@ public class HandlerController {
 	public static Handler createCustomer = ctx ->{
 			Customer customer = ctx.bodyAsClass(Customer.class);
 			Connection conn=ConnectionUtils.createConnection();
-			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?,?)");
+			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?,?,?)");
 			pstmt.setInt(1, customer.getCustomerId());
 			pstmt.setString(2, customer.getName());
 			pstmt.setDouble(3, customer.getBalance());
+			pstmt.setString(4,customer.getAccountName());
 			pstmt.execute();
 			ctx.status(201);
 		 };
@@ -61,7 +63,8 @@ public class HandlerController {
 			int id = rs.getInt("customer_id");
 			String name = rs.getString("customer_name");
 			Double balance = rs.getDouble("balance");
-			c1 = new Customer(id,name, balance);
+			String accountName = rs.getString("account_type");
+			c1 = new Customer(id,name, balance, accountName);
 			customer.add(c1);
 		}
 		ctx.json(customer);
@@ -86,7 +89,18 @@ public class HandlerController {
 		PreparedStatement pstmt = conn.prepareStatement("delete from bank where customer_id=?");
 		pstmt.setInt(1, id);
 		pstmt.execute();
-		ctx.status(200);
+		ctx.status(205);
+	};
+	
+	public static Handler addAccount=ctx->{
+		Customer customer = ctx.bodyAsClass(Customer.class);
+		Connection conn=ConnectionUtils.createConnection();
+		PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?)");
+		pstmt.setInt(1, customer.getCustomerId());
+		pstmt.setString(2, customer.getName());
+		pstmt.setDouble(3, customer.getBalance());
+		pstmt.execute();
+		ctx.status(201);
 	};
 	
 	public static Handler withdrawFunds = ctx -> {
