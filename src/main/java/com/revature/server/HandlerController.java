@@ -99,13 +99,16 @@ public class HandlerController {
         
 	};
 	
-	public static Handler createAccount=ctx->{
+	public static Handler createAccountById=ctx->{
 		int id = Integer.parseInt(ctx.pathParam("customer_id"));
+		String account = ctx.pathParam("account_type");
 		Customer customer=ctx.bodyAsClass(Customer.class);
 		Connection conn= ConnectionUtils.createConnection();
+		String selectAccount = "select * from bank where account_type=?";
+		//PreparedStatement pstmt= conn.prepareStatement(selectAccount);
 		PreparedStatement pstmt = conn.prepareStatement("update bank set account_type=? where customer_id=?");
 		pstmt.setString(1,customer.getAccountName());
-		pstmt.setInt(4, id);
+		pstmt.setInt(2, id);
 		pstmt.execute();
 		ctx.status(201);
 	};

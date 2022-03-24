@@ -17,7 +17,7 @@ public class JavalinClass {
 		
 		app.delete("/customer/{customer_id}", HandlerController.deleteCustomer);
 		
-		app.post("/customer/{customer_id}/{account_type}", HandlerController.createAccount);
+		app.post("/customer/{customer_id}/{account_type}", HandlerController.createAccountById);
 		
 		app.get("/customer/{customer_id}/{account_type}", HandlerController.getAccountForCustomerById);
 	}
