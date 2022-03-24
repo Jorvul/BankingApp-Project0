@@ -14,6 +14,7 @@ import io.javalin.http.Handler;
 
 public class HandlerController {
 	
+
 	public static Handler getCustomers = ctx ->{
 		ResultSet rs;
 		PreparedStatement ptsmt;
@@ -85,9 +86,9 @@ public class HandlerController {
 		pstmt.execute();
 		ctx.status(200);
 	};
+
+
 		
-	        
-	
 	public static Handler deleteCustomer=ctx->{
 		int id=Integer.parseInt(ctx.pathParam("customer_id"));
 		Connection conn= ConnectionUtils.createConnection();
@@ -95,6 +96,7 @@ public class HandlerController {
 		pstmt.setInt(1, id);
 		pstmt.execute();
 		ctx.status(205);
+        
 	};
 	
 	public static Handler createAccount=ctx->{
@@ -107,6 +109,33 @@ public class HandlerController {
 		pstmt.execute();
 		ctx.status(201);
 	};
+	
+	public static Handler getAccountForCustomerById=ctx->{
+		int id = Integer.parseInt(ctx.pathParam("customer_id"));
+		String account = ctx.pathParam("account_type");
+		Connection conn = ConnectionUtils.createConnection();
+		String selectCustomer = "select * from bank where customer_id=?";
+		PreparedStatement ptsmt = conn.prepareStatement(selectCustomer);
+		ptsmt.setInt(1,id);
+		String selectAccount = "select * from bank where account_type=?";
+		PreparedStatement ptsmt1 = conn.prepareStatement(selectAccount);
+		ptsmt1.setString(1,account);
+		ResultSet rs = ptsmt.executeQuery();
+		ArrayList<Customer> customer = new ArrayList<Customer>();
+		Customer c1;
+		while(rs.next()) {
+			int id1 = rs.getInt("customer_id");
+			String name = rs.getString("customer_name");
+			Double balance = rs.getDouble("balance");
+			String accountName = rs.getString("account_type");
+			c1 = new Customer(id1,name, balance, accountName);
+			customer.add(c1);
+		}
+		if(customer.size()==0)
+			ctx.status(404);
+		ctx.json(customer);
+	};
+	
 	
 	public static Handler withdrawFunds = ctx -> {
 		int num = Integer.parseInt(ctx.pathParam("n1"));

@@ -19,7 +19,7 @@ public class JavalinClass {
 		
 		app.post("/customer/{customer_id}/{account_type}", HandlerController.createAccount);
 		
-		app.get("/getWithdrawals/{n1}", HandlerController.withdrawFunds);
+		app.get("/customer/{customer_id}/{account_type}", HandlerController.getAccountForCustomerById);
 	}
 
 }
