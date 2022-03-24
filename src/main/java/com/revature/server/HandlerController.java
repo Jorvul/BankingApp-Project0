@@ -104,8 +104,6 @@ public class HandlerController {
 		String account = ctx.pathParam("account_type");
 		Customer customer=ctx.bodyAsClass(Customer.class);
 		Connection conn= ConnectionUtils.createConnection();
-		String selectAccount = "select * from bank where account_type=?";
-		//PreparedStatement pstmt= conn.prepareStatement(selectAccount);
 		PreparedStatement pstmt = conn.prepareStatement("update bank set account_type=? where customer_id=?");
 		pstmt.setString(1,customer.getAccountName());
 		pstmt.setInt(2, id);
