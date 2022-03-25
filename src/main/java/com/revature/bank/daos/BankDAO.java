@@ -7,4 +7,6 @@ import com.revature.bank.Customer;
 public interface BankDAO {
 
 	List<Customer>getCustomers();
+	boolean createCustomer(Customer customer);
+	List<Customer>getCustomerById(int c);
 }
