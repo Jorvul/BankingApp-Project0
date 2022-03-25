@@ -13,7 +13,7 @@ import com.revature.jdbc.ConnectionUtils;
 public class BankPostgresDAO implements BankDAO {
 
 	@Override
-	public List<Customer> getCustmers() {
+	public List<Customer> getCustomers() {
 		ResultSet rs;
 		PreparedStatement ptsmt;
 		Connection conn = ConnectionUtils.createConnection();

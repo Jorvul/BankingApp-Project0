@@ -6,5 +6,5 @@ import com.revature.bank.Customer;
 
 public interface BankDAO {
 
-	List<Customer>getCustmers();
+	List<Customer>getCustomers();
 }

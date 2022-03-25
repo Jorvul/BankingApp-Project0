@@ -38,7 +38,7 @@ public class HandlerController {
 //		}
 //		rs.close();
 //		ptsmt.close();
-		List<Customer> customer = dao.getCustmers();
+		List<Customer> customer = dao.getCustomers();
 		ctx.json(customer);
 	};
 	
