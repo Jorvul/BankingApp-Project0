@@ -19,7 +19,7 @@ public class JavalinClass {
 		
 		app.get("/customer/{customer_id}", hc.getCustomerById);
 		
-		app.put("/customer/{customer_id}", HandlerController.updateCustomer);
+		app.put("/customer/{customer_id}", hc.updateCustomer);
 		
 		app.delete("/customer/{customer_id}", HandlerController.deleteCustomer);
 		

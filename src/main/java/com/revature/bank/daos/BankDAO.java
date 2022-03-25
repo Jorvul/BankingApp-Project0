@@ -9,4 +9,6 @@ public interface BankDAO {
 	List<Customer>getCustomers();
 	boolean createCustomer(Customer customer);
 	List<Customer>getCustomerById(int c);
+	//List<Customer> updateCustomer(Customer customer);
+	boolean deleteCustomer(int id);
 }

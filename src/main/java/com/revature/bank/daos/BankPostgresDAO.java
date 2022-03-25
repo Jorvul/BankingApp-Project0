@@ -14,6 +14,7 @@ import com.revature.jdbc.ConnectionUtils;
 public class BankPostgresDAO implements BankDAO {
 	PreparedStatement ptsmt;
 		ResultSet rs;
+		int id;
 
 
 	@Override
@@ -87,6 +88,23 @@ public class BankPostgresDAO implements BankDAO {
 		return customer;
 	}
 
-	
+	@Override
+	public boolean deleteCustomer(int id) {
+		try {
+			Connection conn= ConnectionUtils.createConnection();
+			PreparedStatement pstmt = conn.prepareStatement("delete from bank where customer_id=?");
+			pstmt.setInt(1, id);
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 
+	//@Override
+//	public List<Customer> updateCustomer(Customer customer) {
+//	return null;
+//	}
 }

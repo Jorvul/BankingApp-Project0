@@ -89,7 +89,7 @@ public class HandlerController {
 
 	};
 	
-	public static Handler updateCustomer=ctx->{
+	public Handler updateCustomer=ctx->{
 		int id1 = Integer.parseInt(ctx.pathParam("customer_id"));
 		Connection conn= ConnectionUtils.createConnection();
 		Customer customer=ctx.bodyAsClass(Customer.class);
@@ -109,6 +109,13 @@ public class HandlerController {
 		pstmt.setInt(1, id);
 		pstmt.execute();
 		ctx.status(205);
+	
+
+
+		
+
+		
+		
 //		ResultSet rs = pstmt.executeQuery();
 //		ArrayList<Customer> customer = new ArrayList<Customer>();
 //		Customer c1;
