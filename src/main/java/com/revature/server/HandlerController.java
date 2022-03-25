@@ -2,9 +2,12 @@ package com.revature.server;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.bank.CheckingAccount;
 import com.revature.bank.Customer;
+import com.revature.bank.daos.BankDAO;
+import com.revature.bank.daos.BankPostgresDAO;
 import com.revature.jdbc.ConnectionUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,27 +17,28 @@ import io.javalin.http.Handler;
 
 public class HandlerController {
 	
-
+	 static BankDAO dao = new BankPostgresDAO();
 	public static Handler getCustomers = ctx ->{
-		ResultSet rs;
-		PreparedStatement ptsmt;
-		Connection conn = ConnectionUtils.createConnection();
-		
-		String selectCustomers = "select * from bank";
-		ptsmt = conn.prepareStatement(selectCustomers);
-		rs=ptsmt.executeQuery();
-		ArrayList<Customer> customer = new ArrayList<Customer>();
-		Customer c;
-		while(rs.next()) {
-			int id = rs.getInt("customer_id");
-			String name = rs.getString("customer_name");
-			int bal = rs.getInt("balance");
-			String account = rs.getString("account_type");
-			c=new Customer(id,name, bal, account);
-			customer.add(c);
-		}
-		rs.close();
-		ptsmt.close();
+//		ResultSet rs;
+//		PreparedStatement ptsmt;
+//		Connection conn = ConnectionUtils.createConnection();
+//		
+//		String selectCustomers = "select * from bank";
+//		ptsmt = conn.prepareStatement(selectCustomers);
+//		rs=ptsmt.executeQuery();
+//		ArrayList<Customer> customer = new ArrayList<Customer>();
+//		Customer c;
+//		while(rs.next()) {
+//			int id = rs.getInt("customer_id");
+//			String name = rs.getString("customer_name");
+//			int bal = rs.getInt("balance");
+//			String account = rs.getString("account_type");
+//			c=new Customer(id,name, bal, account);
+//			customer.add(c);
+//		}
+//		rs.close();
+//		ptsmt.close();
+		List<Customer> customer = dao.getCustmers();
 		ctx.json(customer);
 	};
 	
@@ -77,14 +81,15 @@ public class HandlerController {
 	};
 	
 	public static Handler updateCustomer=ctx->{
-		int id = Integer.parseInt(ctx.pathParam("customer_id"));
-		Customer customer=ctx.bodyAsClass(Customer.class);
+		int id1 = Integer.parseInt(ctx.pathParam("customer_id"));
 		Connection conn= ConnectionUtils.createConnection();
+		Customer customer=ctx.bodyAsClass(Customer.class);
 		PreparedStatement pstmt = conn.prepareStatement("update bank set customer_name=? where customer_id=?");
 		pstmt.setString(1,customer.getName());
-		pstmt.setInt(2, id);
+		pstmt.setInt(2, id1);
 		pstmt.execute();
 		ctx.status(200);
+		
 	};
 
 
@@ -96,7 +101,20 @@ public class HandlerController {
 		pstmt.setInt(1, id);
 		pstmt.execute();
 		ctx.status(205);
-        
+//		ResultSet rs = pstmt.executeQuery();
+//		ArrayList<Customer> customer = new ArrayList<Customer>();
+//		Customer c1;
+//		while(rs.next()) {
+//			int id1 = rs.getInt("customer_id");
+//			String name = rs.getString("customer_name");
+//			Double balance = rs.getDouble("balance");
+//			String accountName = rs.getString("account_type");
+//			c1 = new Customer(id1,name, balance, accountName);
+//			customer.add(c1);
+//		}
+		
+	
+		
 	};
 	
 	public static Handler createAccountById=ctx->{
