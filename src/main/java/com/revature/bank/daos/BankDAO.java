@@ -12,4 +12,5 @@ public interface BankDAO {
 	Customer updateCustomerById(Customer customer, int id1);
 	void deleteCustomer(int id);
 	Customer createAccountById(Customer customer, int id);
+	List<Customer>getAccountForCustomerById(int id, String account);
 }

@@ -128,4 +128,31 @@ public class BankPostgresDAO implements BankDAO {
 		}
 		return customer;
 	}
+
+	@Override
+	public List<Customer> getAccountForCustomerById(int id, String account) {
+		ArrayList<Customer> customer = new ArrayList<Customer>();
+		try(Connection conn = ConnectionUtils.createConnection();) {
+			String selectCustomer = "select * from bank where customer_id=?";
+			ptsmt = conn.prepareStatement(selectCustomer);
+			ptsmt.setInt(1,id);
+			String selectAccount = "select * from bank where account_type=?";
+			PreparedStatement ptsmt1 = conn.prepareStatement(selectAccount);
+			ptsmt1.setString(1,account);
+			 rs = ptsmt.executeQuery();
+			Customer c1;
+			while(rs.next()) {
+				int id1 = rs.getInt("customer_id");
+				String name = rs.getString("customer_name");
+				Double balance = rs.getDouble("balance");
+				String accountName = rs.getString("account_type");
+				c1 = new Customer(id1,name, balance, accountName);
+				customer.add(c1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return customer;
+	}
 }

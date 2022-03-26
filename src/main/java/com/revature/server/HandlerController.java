@@ -147,27 +147,28 @@ public class HandlerController {
 		this.dao.createAccountById(customer, id);
 	};
 	
-	public static Handler getAccountForCustomerById=ctx->{
+	public Handler getAccountForCustomerById=ctx->{
 		int id = Integer.parseInt(ctx.pathParam("customer_id"));
 		String account = ctx.pathParam("account_type");
-		Connection conn = ConnectionUtils.createConnection();
-		String selectCustomer = "select * from bank where customer_id=?";
-		PreparedStatement ptsmt = conn.prepareStatement(selectCustomer);
-		ptsmt.setInt(1,id);
-		String selectAccount = "select * from bank where account_type=?";
-		PreparedStatement ptsmt1 = conn.prepareStatement(selectAccount);
-		ptsmt1.setString(1,account);
-		ResultSet rs = ptsmt.executeQuery();
-		ArrayList<Customer> customer = new ArrayList<Customer>();
-		Customer c1;
-		while(rs.next()) {
-			int id1 = rs.getInt("customer_id");
-			String name = rs.getString("customer_name");
-			Double balance = rs.getDouble("balance");
-			String accountName = rs.getString("account_type");
-			c1 = new Customer(id1,name, balance, accountName);
-			customer.add(c1);
-		}
+//		Connection conn = ConnectionUtils.createConnection();
+//		String selectCustomer = "select * from bank where customer_id=?";
+//		PreparedStatement ptsmt = conn.prepareStatement(selectCustomer);
+//		ptsmt.setInt(1,id);
+//		String selectAccount = "select * from bank where account_type=?";
+//		PreparedStatement ptsmt1 = conn.prepareStatement(selectAccount);
+//		ptsmt1.setString(1,account);
+//		ResultSet rs = ptsmt.executeQuery();
+		//ArrayList<Customer> customer = new ArrayList<Customer>();
+//		Customer c1;
+//		while(rs.next()) {
+//			int id1 = rs.getInt("customer_id");
+//			String name = rs.getString("customer_name");
+//			Double balance = rs.getDouble("balance");
+//			String accountName = rs.getString("account_type");
+//			c1 = new Customer(id1,name, balance, accountName);
+//			customer.add(c1);
+//		}
+		List<Customer>customer = this.dao.getAccountForCustomerById(id, account);
 		if(customer.size()==0)
 			ctx.status(404);
 		ctx.json(customer);

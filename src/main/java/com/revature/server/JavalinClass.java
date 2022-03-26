@@ -25,7 +25,7 @@ public class JavalinClass {
 		
 		app.post("/customer/{customer_id}/{account_type}", hc.createAccountById);
 		
-		app.get("/customer/{customer_id}/{account_type}", HandlerController.getAccountForCustomerById);
+		app.get("/customer/{customer_id}/{account_type}", hc.getAccountForCustomerById);
 	}
 
 }
