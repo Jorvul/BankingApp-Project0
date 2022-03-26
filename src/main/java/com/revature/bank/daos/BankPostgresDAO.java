@@ -99,7 +99,6 @@ public class BankPostgresDAO implements BankDAO {
 			e.printStackTrace();
 			
 		}
-		
 	}
 
 	@Override

@@ -105,33 +105,9 @@ public class HandlerController {
 		
 	public Handler deleteCustomer=ctx->{
 		int id=Integer.parseInt(ctx.pathParam("customer_id"));
-//		Connection conn= ConnectionUtils.createConnection();
-//		PreparedStatement pstmt = conn.prepareStatement("delete from bank where customer_id=?");
-//		pstmt.setInt(1, id);
-//		pstmt.execute();
 		ctx.status(205);
 		this.dao.deleteCustomer(id);
-	
 
-
-		
-
-		
-		
-//		ResultSet rs = pstmt.executeQuery();
-//		ArrayList<Customer> customer = new ArrayList<Customer>();
-//		Customer c1;
-//		while(rs.next()) {
-//			int id1 = rs.getInt("customer_id");
-//			String name = rs.getString("customer_name");
-//			Double balance = rs.getDouble("balance");
-//			String accountName = rs.getString("account_type");
-//			c1 = new Customer(id1,name, balance, accountName);
-//			customer.add(c1);
-//		}
-		
-	
-		
 	};
 	
 	public Handler createAccountById=ctx->{
