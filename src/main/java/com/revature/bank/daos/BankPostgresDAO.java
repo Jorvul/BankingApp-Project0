@@ -14,7 +14,7 @@ import com.revature.jdbc.ConnectionUtils;
 public class BankPostgresDAO implements BankDAO {
 	PreparedStatement ptsmt;
 		ResultSet rs;
-		int id;
+		
 
 
 	@Override
@@ -89,22 +89,43 @@ public class BankPostgresDAO implements BankDAO {
 	}
 
 	@Override
-	public boolean deleteCustomer(int id) {
-		try {
-			Connection conn= ConnectionUtils.createConnection();
+	public void deleteCustomer(int id) {
+		try (Connection conn= ConnectionUtils.createConnection();){
 			PreparedStatement pstmt = conn.prepareStatement("delete from bank where customer_id=?");
 			pstmt.setInt(1, id);
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			
 		}
-		return true;
+		
 	}
 
-	//@Override
-//	public List<Customer> updateCustomer(Customer customer) {
-//	return null;
-//	}
+	@Override
+	public Customer updateCustomerById(Customer customer, int id1) {
+		try(Connection conn= ConnectionUtils.createConnection();){
+			PreparedStatement pstmt = conn.prepareStatement("update bank set customer_name=? where customer_id=?");
+			pstmt.setString(1,customer.getName());
+			pstmt.setInt(2, id1);
+			pstmt.execute();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+	return customer;
+	}
+
+	@Override
+	public Customer createAccountById(Customer customer, int id) {
+		try(Connection conn = ConnectionUtils.createConnection();){
+			PreparedStatement pstmt = conn.prepareStatement("update bank set account_type=? where customer_id=?");
+			pstmt.setString(1,customer.getAccountName());
+			pstmt.setInt(2, id);
+			pstmt.execute();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return customer;
+	}
 }

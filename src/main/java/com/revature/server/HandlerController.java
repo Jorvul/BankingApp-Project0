@@ -89,26 +89,28 @@ public class HandlerController {
 
 	};
 	
-	public Handler updateCustomer=ctx->{
+	public Handler updateCustomerById=ctx->{
 		int id1 = Integer.parseInt(ctx.pathParam("customer_id"));
-		Connection conn= ConnectionUtils.createConnection();
 		Customer customer=ctx.bodyAsClass(Customer.class);
-		PreparedStatement pstmt = conn.prepareStatement("update bank set customer_name=? where customer_id=?");
-		pstmt.setString(1,customer.getName());
-		pstmt.setInt(2, id1);
-		pstmt.execute();
+//		Connection conn= ConnectionUtils.createConnection();
+//		PreparedStatement pstmt = conn.prepareStatement("update bank set customer_name=? where customer_id=?");
+//		pstmt.setString(1,customer.getName());
+//		pstmt.setInt(2, id1);
+//		pstmt.execute();
 		ctx.status(200);
+		this.dao.updateCustomerById(customer, id1);
 	};
 
 
 		
-	public static Handler deleteCustomer=ctx->{
+	public Handler deleteCustomer=ctx->{
 		int id=Integer.parseInt(ctx.pathParam("customer_id"));
-		Connection conn= ConnectionUtils.createConnection();
-		PreparedStatement pstmt = conn.prepareStatement("delete from bank where customer_id=?");
-		pstmt.setInt(1, id);
-		pstmt.execute();
+//		Connection conn= ConnectionUtils.createConnection();
+//		PreparedStatement pstmt = conn.prepareStatement("delete from bank where customer_id=?");
+//		pstmt.setInt(1, id);
+//		pstmt.execute();
 		ctx.status(205);
+		this.dao.deleteCustomer(id);
 	
 
 
@@ -132,16 +134,17 @@ public class HandlerController {
 		
 	};
 	
-	public static Handler createAccountById=ctx->{
+	public Handler createAccountById=ctx->{
 		int id = Integer.parseInt(ctx.pathParam("customer_id"));
 		String account = ctx.pathParam("account_type");
 		Customer customer=ctx.bodyAsClass(Customer.class);
-		Connection conn= ConnectionUtils.createConnection();
-		PreparedStatement pstmt = conn.prepareStatement("update bank set account_type=? where customer_id=?");
-		pstmt.setString(1,customer.getAccountName());
-		pstmt.setInt(2, id);
-		pstmt.execute();
+//		Connection conn= ConnectionUtils.createConnection();
+//		PreparedStatement pstmt = conn.prepareStatement("update bank set account_type=? where customer_id=?");
+//		pstmt.setString(1,customer.getAccountName());
+//		pstmt.setInt(2, id);
+//		pstmt.execute();
 		ctx.status(201);
+		this.dao.createAccountById(customer, id);
 	};
 	
 	public static Handler getAccountForCustomerById=ctx->{

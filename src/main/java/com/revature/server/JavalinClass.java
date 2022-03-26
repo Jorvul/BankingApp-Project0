@@ -19,11 +19,11 @@ public class JavalinClass {
 		
 		app.get("/customer/{customer_id}", hc.getCustomerById);
 		
-		app.put("/customer/{customer_id}", hc.updateCustomer);
+		app.put("/customer/{customer_id}", hc.updateCustomerById);
 		
-		app.delete("/customer/{customer_id}", HandlerController.deleteCustomer);
+		app.delete("/customer/{customer_id}", hc.deleteCustomer);
 		
-		app.post("/customer/{customer_id}/{account_type}", HandlerController.createAccountById);
+		app.post("/customer/{customer_id}/{account_type}", hc.createAccountById);
 		
 		app.get("/customer/{customer_id}/{account_type}", HandlerController.getAccountForCustomerById);
 	}
