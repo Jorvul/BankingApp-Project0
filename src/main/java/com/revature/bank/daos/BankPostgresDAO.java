@@ -49,11 +49,12 @@ public class BankPostgresDAO implements BankDAO {
 	@Override
 	public boolean createCustomer(Customer customer) {
 		try(Connection conn=ConnectionUtils.createConnection();) {
-			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?,?,?)");
+			PreparedStatement pstmt= conn.prepareStatement("insert into bank values(?,?,?,?,?)");
 			pstmt.setInt(1, customer.getCustomerId());
 			pstmt.setString(2, customer.getName());
 			pstmt.setDouble(3, customer.getBalance());
 			pstmt.setString(4,customer.getAccountName());
+			pstmt.setString(5, customer.getAccountType2());
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -106,15 +107,15 @@ public class BankPostgresDAO implements BankDAO {
 	@Override
 	public Customer updateCustomerById(Customer customer, int id1) {
 		try(Connection conn= ConnectionUtils.createConnection();){
-			PreparedStatement pstmt = conn.prepareStatement("update bank set customer_name=? where customer_id=?");
-			pstmt.setString(1,customer.getName());
-			pstmt.setInt(2, id1);
-			pstmt.execute();
+			 ptsmt = conn.prepareStatement("update bank set customer_name=? where customer_id=?");
+			ptsmt.setString(1,customer.getName());
+			ptsmt.setInt(2, id1);
+			ptsmt.execute();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-
-	return customer;
+		return customer;
+	
 	}
 
 	@Override
@@ -148,9 +149,11 @@ public class BankPostgresDAO implements BankDAO {
 				Double balance = rs.getDouble("balance");
 				String accountName = rs.getString("account_type");
 				String accountType2 = rs.getString("account_type2");
-				c1 = new Customer(id1,name, balance, accountName, accountType2);
+				c1 = new Customer(id1, name, balance, accountName, accountType2);
 				customer.add(c1);
 			}
+			rs.close();
+			ptsmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

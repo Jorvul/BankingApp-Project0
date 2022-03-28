@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 
 import com.revature.bank.Customer;
 import com.revature.bank.daos.BankDAO;
@@ -19,7 +20,8 @@ import com.revature.bank.daos.BankPostgresDAO;
 public class CustomerDAOTest {
 	  private BankDAO dao = new BankPostgresDAO();
 	  private static Customer customer;
-@Test
+//@Test
+@BeforeAll	  
 @Order(1)
 	   void  createNewCustomerTest() {
 		   Customer lp = new Customer(25, "Lewis Parker", 20000.00, "Checking Account", "Savings Account");
@@ -27,7 +29,7 @@ public class CustomerDAOTest {
 			CustomerDAOTest.customer = lp;
 			Assertions.assertEquals(25, lp.getCustomerId());
 	  }
-@Test
+//@Test
 @Order(2)
 void getAllCustomersTest() {
 	List<Customer> allCustomers = new ArrayList<Customer>();
@@ -36,7 +38,7 @@ void getAllCustomersTest() {
 	Assertions.assertNotEquals(noCustomers, allCustomers);
 }
 
-@Test
+//@Test
 @Order(3)
 void getCustomerByIdTest() {
 	Customer cus = new Customer(10, "Jorge",30000.00, "Checking Account", "Savings Account");
@@ -44,7 +46,7 @@ void getCustomerByIdTest() {
 	CustomerDAOTest.customer = cus;
 	Assertions.assertEquals(10, cus.getCustomerId());
 }
-@Test
+//@Test
 @Order(4)
 void updateCustomerByIdTest() {
 	Customer cus = new Customer(15, "Troy",25000.00,"Savings Account", "Checking Account");
@@ -52,7 +54,7 @@ void updateCustomerByIdTest() {
 	CustomerDAOTest.customer= cus;
 	Assertions.assertEquals(15, cus.getCustomerId());
 }
-@Test
+//@Test
 @Order(5)
 void deleteCustomerTest() {
 	Customer cus = new Customer(25,"Lewis Parker", 20000.00, "Checking Account", "Savings Account");
@@ -60,7 +62,7 @@ void deleteCustomerTest() {
 	CustomerDAOTest.customer = cus;
 	Assertions.assertEquals(25, cus.getCustomerId());
 }
-@Test
+//@Test
 @Order(6)
 void createNewAccountTest() {
 	Customer cus = new Customer(25,"Lewis Parker", 20000.00, "Checking Account", "Savings Account");
@@ -68,7 +70,7 @@ void createNewAccountTest() {
 	CustomerDAOTest.customer = cus;
 	Assertions.assertEquals(25, cus.getCustomerId());
 }
-@Test
+//@Test
 @Order(7)
 void getAccountByIdTest() {
 	Customer cus = new Customer(25,"Lewis Parker", 20000.00, "Checking Account", "Savings Account");

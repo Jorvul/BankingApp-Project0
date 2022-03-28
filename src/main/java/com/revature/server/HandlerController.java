@@ -1,16 +1,12 @@
 package com.revature.server;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.revature.bank.BankingAccounts;
+
+import java.util.List;
 import com.revature.bank.Customer;
 import com.revature.bank.daos.BankDAO;
 import com.revature.bank.daos.BankPostgresDAO;
-import com.revature.jdbc.ConnectionUtils;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
 
 
 import io.javalin.http.Handler;
@@ -98,6 +94,11 @@ public class HandlerController {
 //		pstmt.setInt(2, id1);
 //		pstmt.execute();
 		ctx.status(200);
+//		List<Customer> customer1 = this.dao.updateCustomerById(customer, id1);
+//		if(customer1.size()!=0) {
+//			ctx.status(404);
+//			ctx.json(customer);
+//		} 
 		this.dao.updateCustomerById(customer, id1);
 	};
 
