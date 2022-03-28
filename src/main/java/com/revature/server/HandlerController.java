@@ -112,7 +112,7 @@ public class HandlerController {
 	
 	public Handler createAccountById=ctx->{
 		int id = Integer.parseInt(ctx.pathParam("customer_id"));
-		String account = ctx.pathParam("account_type");
+		String account = ctx.pathParam("account_type2");
 		Customer customer=ctx.bodyAsClass(Customer.class);
 //		Connection conn= ConnectionUtils.createConnection();
 //		PreparedStatement pstmt = conn.prepareStatement("update bank set account_type=? where customer_id=?");

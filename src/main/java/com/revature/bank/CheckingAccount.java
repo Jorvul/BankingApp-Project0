@@ -5,14 +5,16 @@ public abstract class CheckingAccount {
 	private String name;
 	private double balance;
 	private String accountName;
+	private String accountType2;
 	
 	
-	public CheckingAccount(int customerId, String name, double balance, String accountName) {
+	public CheckingAccount(int customerId, String name, double balance, String accountName, String accountType2) {
 		super();
 		this.customerId = customerId;
 		this.name = name;
 		this.balance = balance;
 		this.accountName = accountName;
+		this.accountType2 = accountType2;
 	}
 	
 	
@@ -56,10 +58,19 @@ public abstract class CheckingAccount {
 		this.accountName = accountName;
 	}
 
+	public String getAccountType2() {
+		return accountType2;
+	}
+
+
+	public void setAccountType2(String accountType2) {
+		this.accountType2 = accountType2;
+	}
+
 	@Override
 	public String toString() {
 		return "CheckingAccount [customerId=" + customerId + ", name=" + name + ", balance=" + balance
-				+ ", accountName=" + accountName + "]";
+				+ ", accountName=" + accountName + ", accountType2=" + accountType2 + "]";
 	}
 
 

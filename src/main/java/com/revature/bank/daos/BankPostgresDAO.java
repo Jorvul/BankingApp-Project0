@@ -34,7 +34,8 @@ public class BankPostgresDAO implements BankDAO {
 				String name = rs.getString("customer_name");
 				int bal = rs.getInt("balance");
 				String account = rs.getString("account_type");
-				c=new Customer(id,name, bal, account);
+				String account2 = rs.getString("account_type2");
+				c=new Customer(id,name, bal, account, account2);
 				customer.add(c);
 			}
 		} catch (SQLException e) {
@@ -78,7 +79,8 @@ public class BankPostgresDAO implements BankDAO {
 				String name = rs.getString("customer_name");
 				Double balance = rs.getDouble("balance");
 				String accountName = rs.getString("account_type");
-				c1 = new Customer(id,name, balance, accountName);
+				String accountType2 = rs.getString("account_type2");
+				c1 = new Customer(id,name, balance, accountName, accountType2);
 				customer.add(c1);
 			}
 		} catch (SQLException e) {
@@ -118,7 +120,7 @@ public class BankPostgresDAO implements BankDAO {
 	@Override
 	public Customer createAccountById(Customer customer, int id) {
 		try(Connection conn = ConnectionUtils.createConnection();){
-			PreparedStatement pstmt = conn.prepareStatement("update bank set account_type=? where customer_id=?");
+			PreparedStatement pstmt = conn.prepareStatement("update bank set account_type2=? where customer_id=?");
 			pstmt.setString(1,customer.getAccountName());
 			pstmt.setInt(2, id);
 			pstmt.execute();
@@ -135,7 +137,7 @@ public class BankPostgresDAO implements BankDAO {
 			String selectCustomer = "select * from bank where customer_id=?";
 			ptsmt = conn.prepareStatement(selectCustomer);
 			ptsmt.setInt(1,id);
-			String selectAccount = "select * from bank where account_type=?";
+			String selectAccount = "select * from bank where account_type=? and account_type2=?";
 			PreparedStatement ptsmt1 = conn.prepareStatement(selectAccount);
 			ptsmt1.setString(1,account);
 			 rs = ptsmt.executeQuery();
@@ -145,7 +147,8 @@ public class BankPostgresDAO implements BankDAO {
 				String name = rs.getString("customer_name");
 				Double balance = rs.getDouble("balance");
 				String accountName = rs.getString("account_type");
-				c1 = new Customer(id1,name, balance, accountName);
+				String accountType2 = rs.getString("account_type2");
+				c1 = new Customer(id1,name, balance, accountName, accountType2);
 				customer.add(c1);
 			}
 		} catch (SQLException e) {

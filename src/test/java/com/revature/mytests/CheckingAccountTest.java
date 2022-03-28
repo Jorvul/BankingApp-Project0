@@ -8,7 +8,7 @@ import com.revature.bank.Customer;
 
 
 public class CheckingAccountTest {
-	Customer p = new Customer( 10, "Jorge",30000.00, "checkingAccount");
+	Customer p = new Customer( 10, "Jorge",30000.00, "checkingAccount", "Savings Account");
 	
 	@Test
 	public void testBalanceWithDeposit() {
