@@ -3,7 +3,7 @@ package com.revature.mytests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import com.revature.bank.CheckingAccount;
+import com.revature.bank.BankingAccounts;
 import com.revature.bank.Customer;
 
 

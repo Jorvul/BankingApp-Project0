@@ -1,6 +1,6 @@
 package com.revature.bank;
 
-public class Customer extends CheckingAccount {
+public class Customer extends BankingAccounts {
 	public Customer(int customerId, String name, double balance, String accountName, String accountType2) {
 		super(customerId, name, balance, accountName, accountType2);
 	}

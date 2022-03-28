@@ -1,6 +1,6 @@
 package com.revature.bank;
 
-public abstract class CheckingAccount {
+public abstract class BankingAccounts {
 	private int customerId;
 	private String name;
 	private double balance;
@@ -8,7 +8,7 @@ public abstract class CheckingAccount {
 	private String accountType2;
 	
 	
-	public CheckingAccount(int customerId, String name, double balance, String accountName, String accountType2) {
+	public BankingAccounts(int customerId, String name, double balance, String accountName, String accountType2) {
 		super();
 		this.customerId = customerId;
 		this.name = name;
@@ -18,7 +18,7 @@ public abstract class CheckingAccount {
 	}
 	
 	
-	public CheckingAccount() {
+	public BankingAccounts() {
 		super();
 	}
 
@@ -69,7 +69,7 @@ public abstract class CheckingAccount {
 
 	@Override
 	public String toString() {
-		return "CheckingAccount [customerId=" + customerId + ", name=" + name + ", balance=" + balance
+		return "BankingAccounts [customerId=" + customerId + ", name=" + name + ", balance=" + balance
 				+ ", accountName=" + accountName + ", accountType2=" + accountType2 + "]";
 	}
 

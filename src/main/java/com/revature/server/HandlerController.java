@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.bank.CheckingAccount;
+import com.revature.bank.BankingAccounts;
 import com.revature.bank.Customer;
 import com.revature.bank.daos.BankDAO;
 import com.revature.bank.daos.BankPostgresDAO;
