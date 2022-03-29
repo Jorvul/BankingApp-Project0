@@ -10,10 +10,10 @@ public class Customer extends BankingAccounts {
 	}
 
 	public static void main(String[] args) {
-		Customer customer = new Customer(10, "Jorge", 30000.00, "checkingAccount", "Savings Account");
-		Customer customer2 = new Customer(12, "Travis", 15000.00, "checkingAccount", "Savings Account");
-		Customer customer3 = new Customer(15,"Elena", 200000.00, "checkingAccount", "Savings Account");
-		Customer customer4 = new Customer(5,"Wilfred", 10000.00, "checkingAccount", "Savings Account");
+		Customer customer = new Customer(10, "Jorge Palacios", 30000.00, "checkingAccount", "Savings Account");
+		Customer customer2 = new Customer(12, "Travis Shaw", 15000.00, "checkingAccount", "Savings Account");
+		Customer customer3 = new Customer(15,"Elena Wilde", 200000.00, "checkingAccount", "Savings Account");
+		Customer customer4 = new Customer(5,"Wilfred Scott", 10000.00, "checkingAccount", "Savings Account");
 
 		
 		customer.depositFunds(150.00);
