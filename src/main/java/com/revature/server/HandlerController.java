@@ -46,7 +46,12 @@ public class HandlerController {
 	public Handler updateCustomerById=ctx->{
 		int id1 = Integer.parseInt(ctx.pathParam("customer_id"));
 		Customer customer=ctx.bodyAsClass(Customer.class);
-		ctx.status(200);
+		List<Customer> daoUpdate = dao.getCustomerById(id1);
+		if(daoUpdate.size()== 0) {
+			ctx.status(404);
+		} else {
+			ctx.status(200);
+		}
 		this.dao.updateCustomerById(customer, id1);
 	};
 
@@ -54,7 +59,12 @@ public class HandlerController {
 		
 	public Handler deleteCustomer=ctx->{
 		int id=Integer.parseInt(ctx.pathParam("customer_id"));
-		ctx.status(205);
+		List<Customer> daoDelete = dao.getCustomerById(id);
+		if(daoDelete.size()== 0) {
+			ctx.status(404);
+		} else {
+			ctx.status(205);
+		}
 		this.dao.deleteCustomer(id);
 
 	};

@@ -54,13 +54,14 @@ void updateCustomerByIdTest() {
 	Assertions.assertEquals(15, cus.getCustomerId());
 }
 //@Test
-@Order(5)
+@Order(7)
 void deleteCustomerTest() {
 	Customer cus = new Customer(25,"Lewis Parker", 20000.00, "Checking Account", "Savings Account");
 	dao.deleteCustomer(25);
 	CustomerDAOTest.customer = cus;
 	Assertions.assertEquals(25, cus.getCustomerId());
 }
+
 //@Test
 @Order(6)
 void createNewAccountTest() {
@@ -70,7 +71,7 @@ void createNewAccountTest() {
 	Assertions.assertEquals(25, cus.getCustomerId());
 }
 //@Test
-@Order(7)
+@Order(5)
 void getAccountByIdTest() {
 	Customer cus = new Customer(25,"Lewis Parker", 20000.00, "Checking Account", "Savings Account");
 	dao.getAccountForCustomerById(25, "Lewis");
